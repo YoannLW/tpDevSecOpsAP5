@@ -77,7 +77,13 @@ The application is designed to be deployed on **Coolify**.
         *   For the `frontend` service, set the domain to: `http://tpfinal.<your-domain>.store`.
         *   (Optional) For the `backend` service, you can set a domain or leave it internal.
 6.  **Environment Variables**:
-    *   Ensure all necessary environment variables (DB credentials, etc.) are set in Coolify if they differ from defaults.
+    *   Go to the **Environment Variables** tab in your Coolify resource.
+    *   Add the following variables (keys and values):
+        *   `POSTGRES_USER`: `postgres` (or your chosen user)
+        *   `POSTGRES_PASSWORD`: `clicker` (or your chosen password)
+        *   `POSTGRES_DB`: `clicker` (or your chosen db name)
+    *   **Save** the variables.
+    *   **Redeploy** the application.
 
 ### 2. Setup CI/CD Webhook
 1.  In your Coolify resource, go to **Webhooks**.
