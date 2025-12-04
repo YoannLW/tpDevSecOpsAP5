@@ -4,9 +4,9 @@ services:
   postgres:
     image: postgres:15-alpine
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: clicker
-      POSTGRES_DB: clicker
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./database:/docker-entrypoint-initdb.d
@@ -21,16 +21,16 @@ services:
       retries: 5
 
   backend:
-    # build: ./backend
-    image: tp-backend
+    build: ./backend
+    # image: tp-backend
     ports:
       - "8081:8081"
     environment:
       DB_HOST: postgres
       DB_PORT: 5432
-      DB_USER: postgres
-      DB_PASSWORD: clicker
-      DB_NAME: clicker
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DB}
       PORT: 8081
     depends_on:
       postgres:
@@ -39,8 +39,8 @@ services:
       - app-network
 
   frontend:
-    # build: ./frontend
-    image: tp-frontend
+    build: ./frontend
+    # image: tp-frontend
     ports:
       - "80:80"
     depends_on:
