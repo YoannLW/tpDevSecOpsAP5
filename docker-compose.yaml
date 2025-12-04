@@ -21,8 +21,8 @@ services:
       retries: 5
 
   backend:
-    # build: ./backend
-    image: tp-backend
+    build: ./backend
+    # image: tp-backend
     ports:
       - "8081:8081"
     environment:
@@ -39,8 +39,8 @@ services:
       - app-network
 
   frontend:
-    # build: ./frontend
-    image: tp-frontend
+    build: ./frontend
+    # image: tp-frontend
     ports:
       - "80:80"
     depends_on:
